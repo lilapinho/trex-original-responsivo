@@ -49,7 +49,7 @@ function setup() {
   ground = createSprite(200, height - 50, 400, 20)
   ground.addImage('ground', groundImage)
   ground.x = ground.width / 2
-  ground.velocityX = -(6 + (3 * score) / 100)
+  ground.velocityX = -(width + (3 * score) / 100)
 
   gameOver = createSprite(width / 2, height / 2)
   gameOver.addImage(gameOverImg)
@@ -74,7 +74,8 @@ function setup() {
 
 function draw() {
   //trex.debug = true;
-  background('white')
+  background(173,216,230)
+
 
   text('Pontuação: ' + score, width - 100, 50)
 
@@ -128,14 +129,14 @@ function draw() {
 function spawnClouds() {
   //escreva o código aqui para fazer as nuvens surgirem
   if (frameCount % 60 === 0) {
-    var cloud = createSprite(600, 120, 40, 10)
+    var cloud = createSprite(width, 120, 40, 10)
     cloud.y = Math.round(random(100, height - 100))
     cloud.addImage(cloudImage)
-    cloud.scale = 0.5
+    cloud.scale = 0.8
     cloud.velocityX = -3
 
     //designe tempo de vida para a variável
-    cloud.lifetime = 200
+    cloud.lifetime = width
 
     //ajuste a profundidade
     cloud.depth = trex.depth
@@ -148,7 +149,7 @@ function spawnClouds() {
 
 function spawnObstacles() {
   if (frameCount % 60 === 0) {
-    var obstacle = createSprite(600, height - 65, 10, 40)
+    var obstacle = createSprite(width, height - 65, 10, 40)
     //obstacle.debug = true;
     obstacle.velocityX = -(6 + (3 * score) / 100)
 
@@ -179,7 +180,7 @@ function spawnObstacles() {
 
     //designe o escalonamento e tempo de vida ao obstáculo
     obstacle.scale = 0.5
-    obstacle.lifetime = 300
+    obstacle.lifetime = width
     //adicione cada obstáculo ao grupo
     obstaclesGroup.add(obstacle)
   }
@@ -197,3 +198,4 @@ function reset() {
 
   score = 0
 }
+
